@@ -96,4 +96,5 @@ yarn-debug.log*
 !/storage/.keep
 /public/uploads
 
+/db/mysql/volumes/
 
