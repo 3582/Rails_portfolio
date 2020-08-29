@@ -1,3 +1,3 @@
 class Image < ApplicationRecord
-  haa_one_attached :image
+  has_one_attached :image
 end
