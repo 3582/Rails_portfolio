@@ -7,7 +7,7 @@ module Api
         end
 
         def show
-          render json: PostResource.new(Post.find(params[:id]))
+          render json: Post.find(params[:id])
         end
 
         def create
