@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     namespace :v1 do
       resources :posts
+      resources :images, only: :create do
+        collection do
+          get :fetch_latest_image
+        end
+      end
     end
   end
 end
