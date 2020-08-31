@@ -4,9 +4,9 @@ module Api
       def create
         image = Image.new(image_params)
         if image.save
-          render json: { status: "image_saved"}
+          render json:, status: 200
         else
-          render json: { status: "image_failed"}
+          render json:, status: 200
         end
       end
 
