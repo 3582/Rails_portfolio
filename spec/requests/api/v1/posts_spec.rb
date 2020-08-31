@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Posts", :type => :request do
+
   describe "/api/v1/posts" do
    
    it "10取得できるかの確認 index" do
