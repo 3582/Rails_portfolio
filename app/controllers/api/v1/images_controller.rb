@@ -4,9 +4,9 @@ module Api
       def create
         image = Image.new(image_params)
         if image.save
-          render :json => { :status => 200 }
+          render json: { status: 200 }
         else
-          render :json => { :status => 200 }
+          render json: { status: 200 }
         end
       end
 
@@ -14,7 +14,7 @@ module Api
         image = Image.last.image
 
         url = url_for(image)
-        render :json => { :url => url }
+        render json: { url: url }
       end
 
       private
