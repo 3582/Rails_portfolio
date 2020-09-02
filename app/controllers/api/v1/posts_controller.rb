@@ -6,7 +6,6 @@ module Api
         render json: Post.all
       end
 
-
       def show
         render json: Post.find(params[:id])
       end
