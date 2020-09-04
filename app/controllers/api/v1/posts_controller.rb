@@ -2,6 +2,7 @@ module Api
   module V1
     class PostsController < ApplicationController
       before_action :set_post, only: %i[show edit update destroy]
+      before_action :authenticate_user!, only: %i[create edit update destroy]
       def index
         render json: Post.all
       end
