@@ -1,0 +1,62 @@
+FORMAT: 1A
+HOST: http://example.com
+
+# ユーザー認証機能
+ユーザー認証を扱うAPIです。
+
+#投稿 
+## 基本情報 [/api/v1/auth/]
+ユーザー認証情報を扱います。
+
+### ユーザー登録 [POST]
+メールアドレスとパスワードでユーザー登録します。
++ Request
+    + Attribute
+        + email: `email@test.com` (string, required) - メールアドレス
+        + password: `password` (string, required) - パスワード
+        + password_confirmation: `password` (string, required) - パスワード確認
+    
++ Response 200 (application/json; charset=utf-8)
+    + Attribute
+
++ Response 500 (application/json; charset=utf-8)
+    + Attribute
+        + message: `Internal Server Error` (string, required) - エラーメッセージ
+
+### ユーザー認証 [POST /sign_in]
+ユーザー認証を行います。
++ Request
+    + Attribute
+        + email: `email@test.com` (string, required) - メールアドレス
+        + password: `password` (string, required) - パスワード
+        + password_confirmation: `password` (string, required) - パスワード確認
+
++ Response 200 (application/json; charset=utf-8)
+
+    + Headers
+
+        ```
+        Authorization: Bearer {token}
+        ```
+      
++ Response 500 (application/json; charset=utf-8)
+    + Attribute
+        + message: `Internal Server Error` (string, required) - エラーメッセージ
+
+### セッション終了 [DELETE /sign_out]
+ユーザーの現在のセッションを終了します。
++ Request (application/json; charset=utf-8)
+
+    + Headers
+      
+        ```
+        Authorization: Bearer {token}
+        ```
+
++ Response 200 (application/json; charset=utf-8)
+
+      + Body
+
++ Response 500 (application/json; charset=utf-8)
+    + Attribute
+        + message: `Internal Server Error` (string, required) - エラーメッセージ
