@@ -99,4 +99,3 @@ yarn-debug.log*
 /db/mysql/volumes/
 
 #Ignore blueprint
-/blueprint/*.apib
