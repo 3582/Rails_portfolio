@@ -36,7 +36,7 @@ module Api
       private
 
       def post_params
-        params.permit(:title, :text).merge(user_id: current_user.id)
+        params.permit(:title, :text).merge(:user_id => current_user.id)
       end
 
       def set_post
