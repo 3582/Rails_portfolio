@@ -26,18 +26,17 @@ RSpec.describe 'Posts', :type => :request do
 
     it 'postが作成できるかの確認 create' do
       post_params = { :title => 'test_spec', :text => 'test_text' }
-      post '/api/v1/posts', :params => { :post => { :post => post_params } }, :headers => @auth_tokens
+      post '/api/v1/posts', :params =>  post_params , :headers => @auth_tokens
       expect(response).to have_http_status(200)
     end
 
     it 'postの編集を行う　put' do
       post = create(:post, :title => 'old_title')
-      # p post
-      put "/api/v1/posts/#{post.id}", :params => { :post => { :title => 'new_title' } }, :headers => @auth_tokens
+      new_params = { :title => 'new_spec', :text => 'new_text' }
+      put "/api/v1/posts/#{post.id}", :params =>  new_params , :headers => @auth_tokens
       json = JSON.parse(response.body)
       expect(response).to have_http_status(200)
-      expect(json['title']).to eq('new_title')
-      # p json
+      expect(json['title']).to eq('new_spec')
     end
 
     it 'postを削除できるかの確認 delete' do
