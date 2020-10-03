@@ -13,7 +13,9 @@ module Api
 
       def create
         @post = Post.new(post_params)
+        tag_list =  params[:tag_name].split(",")
         if @post.save
+          @post.save_posts(tag_list)
           render :json => @post, :status => 200
         else
           render :json => @post.errors, :status => 500
@@ -21,7 +23,9 @@ module Api
       end
 
       def update
+        tag_list =  params[:tag_name].split(",")
         if @post.update!(post_params)
+          @post.save_posts(tag_list)
           render :json => @post
         else
           render :json => @post.errors, :status => :unprocessable_entity
