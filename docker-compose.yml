@@ -22,7 +22,7 @@ services:
     ports:
       - '3306:3306'
     environment:
-      MYSQL_DATABASE: docker_development
+      MYSQL_DATABASE: myapp_development
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: root
       MYSQL_PASSWORD: password
