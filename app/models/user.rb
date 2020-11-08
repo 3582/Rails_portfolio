@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  validates :name, uniqueness: true
   include DeviseTokenAuth::Concerns::User
 
   has_many :posts

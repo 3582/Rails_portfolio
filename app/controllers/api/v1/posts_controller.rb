@@ -7,8 +7,25 @@ module Api
         render :json => Post.all
       end
 
+      def recent
+        @post = Post.limit(params[:limit])
+
+        render :json => @post.order("created_at DESC"), :status => 200
+      end
+
+      def ranking
+        @post = Post.limit(params[:limit])
+        render :json => @post.order("total DESC"), :status => 200
+      end
+
+      def posts_with_tagname
+        @tag = Tag.find_by(tag_name:params[:tag_name])
+        @post = @tag.posts.limit(params[:limit])
+
+        render :json => @post, :status => 200
+      end
       def show
-        render :json => @post
+        render :json => @post, :status => 200
       end
 
       def create
