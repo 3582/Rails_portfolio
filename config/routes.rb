@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   namespace :api, :format => 'json' do
     namespace :v1 do
       resources :posts
-      get 'posts/recent/:recent' => 'posts#recent'
+      get 'posts/recent/:limit' => 'posts#recent'
+      get 'posts/ranking/:limit' => 'posts#ranking'
+      get 'posts/:tag_name/:limit' => 'posts#posts_with_tagname'
 
       resources :tags
     end
