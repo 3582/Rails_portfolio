@@ -7,8 +7,13 @@ module Api
         render :json => Post.all
       end
 
+      def recent
+        @post = Post.limit(params[:recent])
+
+        render :json => @post.order("created_at DESC"), :status => 200
+      end
       def show
-        render :json => @post
+        render :json => @post, :status => 200
       end
 
       def create
