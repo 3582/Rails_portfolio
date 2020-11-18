@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
 
-  validates :name, presence: true, uniqueness: true, length: {maximum: 50}
   include DeviseTokenAuth::Concerns::User
 
   has_many :posts
