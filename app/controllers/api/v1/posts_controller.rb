@@ -4,7 +4,7 @@ module Api
       before_action :set_post, :only => %i[show update destroy]
       before_action :authenticate_user!, :only => %i[create update destroy]
       def index
-        render :json => Post.all
+        render :json => Post.joins(:user).select('posts.id, title, total, text, name'), :status => 200
       end
 
       def recent
