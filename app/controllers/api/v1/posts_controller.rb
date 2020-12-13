@@ -4,18 +4,12 @@ module Api
       before_action :set_post, :only => %i[show update destroy]
       before_action :authenticate_user!, :only => %i[create update destroy]
       def index
-        render :json => Post.joins(:user).select('posts.id, title, total, text, name'), :status => 200
-      end
-
-      def recent
-        @post = Post.limit(params[:limit])
-
-        render :json => @post.order("created_at DESC"), :status => 200
+        render :json => Post.all, :status => 200
       end
 
       def ranking
-        @post = Post.limit(params[:limit])
-        render :json => @post.order("total DESC"), :status => 200
+        ranking_sql
+        render :json => @ranking, :status => 200
       end
 
       def posts_with_tagname
@@ -24,6 +18,7 @@ module Api
 
         render :json => @post, :status => 200
       end
+
       def show
         render :json => @post, :status => 200
       end
@@ -55,6 +50,10 @@ module Api
       end
 
       private
+      def ranking_sql
+        sql = "SELECT posts.id, title, name, total, tag_name, posts.created_at FROM tagmaps INNER JOIN posts ON posts.id = tagmaps.post_id INNER JOIN tags ON tags.id = tagmaps.tag_id INNER JOIN users ON users.id = user_id order by #{params[:order]} DESC LIMIT #{params[:limit]}"
+        @ranking = ActiveRecord::Base.connection.select_all(sql).to_hash
+      end
 
       def post_params
         params.permit(:title, :text, :total).merge(:user_id => current_user.id)
