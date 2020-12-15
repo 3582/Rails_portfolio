@@ -9,8 +9,12 @@ module Api
 
       def ranking
         ranking_sql
-        @ranking = ActiveRecord::Base.connection.select_all(@sql).to_hash
-        render :json => @ranking, :status => 200
+        if nil != @sql
+          @ranking = ActiveRecord::Base.connection.select_all(@sql).to_hash
+          render :json => @ranking, :status => 200
+        else
+          render :json => @sql, :status => 500
+        end
       end
 
       def posts_with_tagname
@@ -52,7 +56,9 @@ module Api
 
       private
       def ranking_sql
-        @sql = "SELECT posts.id, title, name, total, tag_name, posts.created_at FROM tagmaps INNER JOIN posts ON posts.id = tagmaps.post_id INNER JOIN tags ON tags.id = tagmaps.tag_id INNER JOIN users ON users.id = user_id order by #{params[:order]} DESC LIMIT #{params[:limit]}"
+        if nil != (params[:limit] =~ /\A[0-9]+\z/) && "total" == params[:order] || "created_at" == params[:order]
+          @sql = "SELECT posts.id, title, name, total, tag_name, posts.created_at FROM tagmaps INNER JOIN posts ON posts.id = tagmaps.post_id INNER JOIN tags ON tags.id = tagmaps.tag_id INNER JOIN users ON users.id = user_id order by #{params[:order]} DESC LIMIT #{params[:limit]}"
+        end
       end
 
       def post_params
