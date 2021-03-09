@@ -4,6 +4,7 @@ CRUD機能を持ったAPI
     - タスクの積み上げ回数のランキングを返却
 - ユーザ認証機能
 投稿機能API定義書https://3582.github.io/Rails_portfolio/posts.html
+
 認証機能API定義書https://3582.github.io/Rails_portfolio/auth.html
 
 # 使用技術
