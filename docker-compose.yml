@@ -10,7 +10,7 @@ services:
     depends_on:
       - db
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - .:/myapp:cached
       - tmp-data:/myapp/tmp/sockets
@@ -34,7 +34,7 @@ services:
       context: ./nginx
       dockerfile: Dockerfile
     ports:
-      - 80:80
+      - '80:80'
     restart: always
     volumes:
       - tmp-data:/myapp/tmp/sockets

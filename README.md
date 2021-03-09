@@ -1,29 +1,30 @@
-# README
+# 概要
+CRUD機能を持ったAPI
+- 作成したタスクのCRUD機能を持つ
+- タスクの積み上げ回数のランキングを返却
+# 使用技術
+- Ruby 2.5.8
+- Ruby on Rails(API) 5.2.2
+- MySQL 5.7
+- Nginx
+- Puma
+- Unicorn
+- AWS
+    - VPC
+    - EC2
+- Docker/Docker-compose
+- Rspec
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
+# AWS構成図
 ![image](https://user-images.githubusercontent.com/43181466/109411011-3b561880-79e2-11eb-8c96-b0d4dcaff877.png)
-
+# ER図
 ![image](https://user-images.githubusercontent.com/43181466/109412012-0600f900-79e9-11eb-83fc-eb285dc8f622.png)
 
+# 機能一覧
+- ユーザー登録、ログイン機能(devise)
+- 投稿機能
+- ランキング機能
+
+# テスト
+  - 単体テスト(model)
+  - 機能テスト(request)
